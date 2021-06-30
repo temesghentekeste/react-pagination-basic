@@ -20,7 +20,28 @@ function App() {
       </div>
     ));
 
-  return <div className="App">{displayUsers}</div>;
+  const pageCount = Math.ceil(users.length / usersPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
+  return (
+    <div className="App">
+      {displayUsers}
+      <ReactPaginate
+        previousLabel={'Previous'}
+        nextLabel={'Next'}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={'paginationBts'}
+        previousLinkClassName={"previousBtn"}
+        nextLinkClassName={"nextBtn"}
+        disabledClassName={'paginationDisabled'}
+        activeClassName={'paginationActive'}
+      />
+    </div>
+  );
 }
 
 export default App;
